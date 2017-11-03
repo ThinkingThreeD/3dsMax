@@ -18,5 +18,30 @@ fn IsConvexQuad a b c d =
 	return Dot acd acb < 0.0f
 )
 
+fn barycentric a b c p =
+(
+	/* 	v1 = (getVert $Plane001.mesh (getFace $Plane001 1).x)*$Plane001.transform
+	* 	v2 = (getVert $Plane001.mesh (getFace $Plane001 1).y)*$Plane001.transform
+	* 	v3 = (getVert $Plane001.mesh (getFace $Plane001 1).z)*$Plane001.transform
+	* 	thePoint = $Point001.pos
+	* 	barycentric v1 v2 v3 thePoint
+	*/
+	
+	v0 = b - a
+	v1 = c - a 
+	v2 = p - a
+	d00 = Dot v0 v0
+	d01 = Dot v0 v1
+	d11 = Dot v1 v1
+	d20 = Dot v2 v0
+	d21 = Dot v2 v1
+	denom = d00 * d11 - d01 * d01;
+	v = (d11 * d20 - d01 * d21) / denom
+	w = (d00 * d21 - d01 * d20) / denom
+	u = 1.0 - v - w
+	return [u,v,w]
+)
+
+
 
 
