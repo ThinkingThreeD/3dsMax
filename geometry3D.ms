@@ -4,6 +4,8 @@ struct Sphere_
 	r
 )
 
+
+
 fn intersect a b =
 (
 	if (classof a) == Sphere_ and (classof b) == Sphere_ do
@@ -11,8 +13,9 @@ fn intersect a b =
 		d = a.c - b.c
 		dist2 = dot d d
 		radiusSum = a.r + b.r
-		dist2 <= radiusSum * radiusSum
+		return dist2 <= radiusSum * radiusSum
 	)
+	return undefined
 )
 
 fn testSphereIntersect =
@@ -23,4 +26,3 @@ fn testSphereIntersect =
 )
 
 testSphereIntersect()
-
