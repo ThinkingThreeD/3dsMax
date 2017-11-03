@@ -23,3 +23,23 @@ void BarycentricCoords(Point3 a, Point3 b, Point3 c, Point3 p, float &u, float &
 	w = (d00 * d21 - d01 * d20) / denom;
 	u = 1.0f - v - w;
 }
+
+int IsConvexQuad(Point3 a, Point3 b, Point3 c, Point3 d)
+{
+	// Quad is nonconvex if Dot(Cross(bd, ba), Cross(bd, bc)) >= 0
+	Point3 bda = CrossProd(d - b, a - b);
+	Point3 bdc = CrossProd(d - b, c - b);
+	if (DotProd(bda, bdc) >= 0.0f) return 0;
+	// Quad is now convex iff Dot(Cross(ac, ad), Cross(ac, ab)) < 0
+	Point3 acd = CrossProd(c - a, d - a);
+	Point3 acb = CrossProd(c - a, b - a);
+	return DotProd(acd, acb) < 0.0f;
+}
+
+
+int TestPointTriangle(Point3 p, Point3 a, Point3 b, Point3 c)
+{
+	float u, v, w;
+	BarycentricCoords(a, b, c, p, u, v, w);
+	return v >= 0.0f && w >= 0.0f && (v + w) <= 1.0f;
+}
