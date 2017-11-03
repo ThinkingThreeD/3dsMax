@@ -42,6 +42,10 @@ fn barycentric a b c p =
 	return [u,v,w]
 )
 
-
-
+int TestPointTriangle(Point3 p, Point3 a, Point3 b, Point3 c)
+{
+	float u, v, w;
+	BarycentricCoords(a, b, c, p, u, v, w);
+	return v >= 0.0f && w >= 0.0f && (v + w) <= 1.0f;
+}
 
