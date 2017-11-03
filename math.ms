@@ -8,6 +8,8 @@ fn Clamp n _min _max =
 
 fn IsConvexQuad a b c d = 
 (
+	-- Example: IsConvexQuad (getvert $.mesh 1) (getvert $.mesh 2) (getvert $.mesh 3) (getvert $.mesh 4)
+	
 	bda = Cross (d - b) (a - b)
 	bdc = Cross (d - b) (c - b)
 	if Dot bda bdc >= 0.0f do return 0
@@ -15,4 +17,6 @@ fn IsConvexQuad a b c d =
 	acb = Cross (c - a) (b - a)
 	return Dot acd acb < 0.0f
 )
+
+
 
