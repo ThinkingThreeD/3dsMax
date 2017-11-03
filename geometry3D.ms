@@ -63,3 +63,15 @@ fn barycentric a b c p =
 	return [u,v,w]
 )
 
+fn pointInTriangle p a  b c = 
+(
+	/* v1 = (getVert $Plane001.mesh (getFace $Plane001 1).x)*$Plane001.transform
+	* v2 = (getVert $Plane001.mesh (getFace $Plane001 1).y)*$Plane001.transform
+	* v3 = (getVert $Plane001.mesh (getFace $Plane001 1).z)*$Plane001.transform
+	* thePoint = $Point001.pos
+	* TestPointTriangle  thePoint v1 v2 v3 
+	*/
+
+	uvw = BarycentricCoords a b c p 
+	return uvw[2] >= 0.0 and uvw[3] >= 0.0 and (uvw[2] + uvw[2]) <= 1.0
+)
