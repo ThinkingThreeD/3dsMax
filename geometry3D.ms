@@ -5,7 +5,7 @@ struct Sphere_
 )
 
 
-
+-- intersect sphere to sphere
 fn intersect a b =
 (
 	if (classof a) == Sphere_ and (classof b) == Sphere_ do
